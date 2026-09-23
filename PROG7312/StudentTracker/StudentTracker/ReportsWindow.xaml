@@ -1,0 +1,89 @@
+<Window x:Class="StudentTracker.ReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Varsity Student Management System"
+        Height="620" Width="980" MinHeight="520" MinWidth="860"
+        WindowStartupLocation="CenterScreen"
+        Background="#ECECEC" FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="ShellBrush" Color="#2F2F2F"/>
+        <SolidColorBrush x:Key="ActiveNavBrush" Color="#7A1F1F"/>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="18,0,0,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#3D3D3D"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ActiveNavButtonStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource ActiveNavBrush}"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="{StaticResource ShellBrush}">
+            <Grid Margin="16,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="28" Height="28" Background="#F4C430" CornerRadius="3" Margin="0,0,10,0">
+                        <TextBlock Text="V" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="VARSITY STUDENT MANAGEMENT SYSTEM" Foreground="White" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Welcome, Admin" Foreground="White" FontSize="12" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="DateTimeText" Foreground="#D0D0D0" FontSize="11" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Background="{StaticResource ShellBrush}">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top" Margin="0,8,0,0">
+                    <Button Content="Dashboard" Style="{StaticResource NavButtonStyle}" Click="DashboardButton_Click"/>
+                    <Button Content="Students" Style="{StaticResource NavButtonStyle}" Click="StudentsButton_Click"/>
+                    <Button Content="Courses" Style="{StaticResource NavButtonStyle}" Click="CoursesButton_Click"/>
+                    <Button Content="Registration" Style="{StaticResource NavButtonStyle}" Click="RegistrationButton_Click"/>
+                    <Button Content="Reports" Style="{StaticResource ActiveNavButtonStyle}" Click="ReportsButton_Click"/>
+                    <Button Content="Settings" Style="{StaticResource NavButtonStyle}" Click="SettingsButton_Click"/>
+                </StackPanel>
+                <Button Content="Logout" DockPanel.Dock="Bottom" Style="{StaticResource NavButtonStyle}" Margin="0,0,0,12" Click="LogoutButton_Click"/>
+            </DockPanel>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="28,24">
+            <TextBlock Text="Reports" FontSize="22" Foreground="#666666" Margin="0,0,0,18"/>
+            <Border Background="#F7F7F7" BorderBrush="#D8D8D8" BorderThickness="1" Padding="20">
+                <TextBlock Text="Reports screen — view and export student and course reports here."
+                           FontSize="14" Foreground="#555555" TextWrapping="Wrap"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>

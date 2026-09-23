@@ -1,0 +1,229 @@
+﻿<Window x:Class="TelemetryEmeris.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NEON DROP // TELEMETRY"
+        Height="820" Width="780"
+        MinHeight="700" MinWidth="680"
+        Background="#050510"
+        FontFamily="Segoe UI Black, Bahnschrift, Segoe UI"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Cyberpunk / Fortnite neon palette -->
+        <SolidColorBrush x:Key="BgDeep" Color="#050510"/>
+        <SolidColorBrush x:Key="BgPanel" Color="#0D0D1A"/>
+        <SolidColorBrush x:Key="NeonCyan" Color="#00F5FF"/>
+        <SolidColorBrush x:Key="NeonMagenta" Color="#FF2D95"/>
+        <SolidColorBrush x:Key="NeonLime" Color="#C8FF00"/>
+        <SolidColorBrush x:Key="NeonYellow" Color="#FFE600"/>
+        <SolidColorBrush x:Key="TextMuted" Color="#7A8BA8"/>
+
+        <Style x:Key="NeonButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#050510"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="Padding" Value="22,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00F5FF" BlurRadius="12" ShadowDepth="0" Opacity="0.7"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.35"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StatCard" TargetType="Border">
+            <Setter Property="Background" Value="#12122A"/>
+            <Setter Property="BorderBrush" Value="#00F5FF"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="MinWidth" Value="110"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Atmosphere: diagonal neon wash -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#050510" Offset="0"/>
+                <GradientStop Color="#12081F" Offset="0.45"/>
+                <GradientStop Color="#061528" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Subtle grid overlay -->
+        <Rectangle Opacity="0.12" IsHitTestVisible="False">
+            <Rectangle.Fill>
+                <DrawingBrush TileMode="Tile" Viewport="0,0,28,28" ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="Transparent">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="#00F5FF" Thickness="0.6"/>
+                            </GeometryDrawing.Pen>
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,28,28"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Margin="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="240"/>
+            </Grid.RowDefinitions>
+
+            <!-- HEADER -->
+            <Grid Grid.Row="0" Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="NEON DROP"
+                               FontSize="34" FontWeight="Black"
+                               Foreground="#C8FF00"/>
+                    <TextBlock Text="// TELEMETRY RIFT  ·  THRESHOLD 60°C"
+                               FontSize="12" FontWeight="Bold"
+                               Foreground="#00F5FF" Margin="2,2,0,0"
+                               FontFamily="Consolas"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="StartButton" Content="▶ DROP IN" Style="{StaticResource NeonButton}"
+                            Background="#C8FF00" Click="StartButton_Click"/>
+                    <Button x:Name="StopButton" Content="■ EXTRACT" Style="{StaticResource NeonButton}"
+                            Background="#FF2D95" Margin="10,0,0,0"
+                            IsEnabled="False" Click="StopButton_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- STAT STRIP -->
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Disabled" Margin="0,0,0,12">
+                <StackPanel Orientation="Horizontal">
+                    <Border Style="{StaticResource StatCard}" BorderBrush="#C8FF00">
+                        <StackPanel>
+                            <TextBlock Text="LIVE TEMP" Foreground="#7A8BA8" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock x:Name="LiveTempText" Text="55.0°" Foreground="#C8FF00"
+                                       FontSize="26" FontWeight="Black"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}">
+                        <StackPanel>
+                            <TextBlock Text="READINGS" Foreground="#7A8BA8" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock x:Name="CountText" Text="0" Foreground="#00F5FF"
+                                       FontSize="26" FontWeight="Black"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}" BorderBrush="#FF2D95">
+                        <StackPanel>
+                            <TextBlock Text="ALERTS" Foreground="#7A8BA8" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock x:Name="AlertCountText" Text="0" Foreground="#FF2D95"
+                                       FontSize="26" FontWeight="Black"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}" BorderBrush="#FFE600">
+                        <StackPanel>
+                            <TextBlock Text="MIN" Foreground="#7A8BA8" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock x:Name="MinTempText" Text="—" Foreground="#FFE600"
+                                       FontSize="26" FontWeight="Black"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}" BorderBrush="#FFE600" Margin="0">
+                        <StackPanel>
+                            <TextBlock Text="MAX" Foreground="#7A8BA8" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock x:Name="MaxTempText" Text="—" Foreground="#FFE600"
+                                       FontSize="26" FontWeight="Black"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- DASHBOARD: all recorded numbers -->
+            <Border Grid.Row="2" Background="#0A0A18" BorderBrush="#00F5FF"
+                    BorderThickness="2" Margin="0,0,0,12" Padding="12">
+                <Border.Effect>
+                    <DropShadowEffect Color="#00F5FF" BlurRadius="20" ShadowDepth="0" Opacity="0.35"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBlock Text="DASHBOARD  //  ALL RECORDED NUMBERS"
+                                   Foreground="#00F5FF" FontSize="13" FontWeight="Black"
+                                   FontFamily="Consolas" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="StatusBanner" DockPanel.Dock="Right"
+                                   Text="STANDBY" Foreground="#C8FF00"
+                                   FontSize="12" FontWeight="Black"
+                                   HorizontalAlignment="Right"/>
+                    </DockPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl x:Name="ReadingsList">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- CHART below dashboard -->
+            <Border Grid.Row="3" Background="#0A0A18" BorderBrush="#FF2D95"
+                    BorderThickness="2" Padding="12">
+                <Border.Effect>
+                    <DropShadowEffect Color="#FF2D95" BlurRadius="20" ShadowDepth="0" Opacity="0.35"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="SIGNAL TRACE  //  TEMPERATURE (°C)"
+                               Foreground="#FF2D95" FontSize="13" FontWeight="Black"
+                               FontFamily="Consolas" Margin="0,0,0,8"/>
+                    <Canvas x:Name="ChartCanvas" Grid.Row="1" ClipToBounds="True"
+                            SizeChanged="ChartCanvas_SizeChanged">
+                        <Line x:Name="ThresholdLine" Stroke="#FF2D95" StrokeThickness="1.5"
+                              StrokeDashArray="6 4" Opacity="0.85"/>
+                        <TextBlock x:Name="ThresholdLabel" Text="⚠ ALERT ZONE 60°C"
+                                   Foreground="#FF2D95" FontSize="11" FontWeight="Bold"
+                                   FontFamily="Consolas" Opacity="0.95"/>
+                        <Polyline x:Name="TempLine" Stroke="#00F5FF" StrokeThickness="2.5"
+                                  StrokeLineJoin="Round"/>
+                    </Canvas>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

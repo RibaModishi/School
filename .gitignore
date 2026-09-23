@@ -1,0 +1,45 @@
+# Nested repo metadata (kept locally; not part of the backup)
+**/.git.__bak/
+
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+**/Debug/
+**/Release/
+**/packages/
+**/.vs/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+# Dependencies
+**/node_modules/
+**/bower_components/
+**/.npm/
+**/dist/
+
+# .NET / MAUI
+**/*.dll
+**/*.pdb
+**/*.cache
+**/appsettings.*.local.json
+**/TestResults/
+**/.idea/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~
+
+# Large archives already extracted as folders
+PROG7312/prog7312-2026-prog7312-part-1-ribaorearabetse.zip
+
+# Logs and temp
+**/*.log
+**/tmp/
+**/temp/
+**/.local-chromium/

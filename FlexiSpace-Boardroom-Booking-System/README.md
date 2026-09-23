@@ -1,0 +1,43 @@
+# FlexiSpace - Boardroom Booking System
+
+INSY7315 WIL Project — boardroom booking system for Eagle Canyon, 
+Houghton, and Centurion.
+
+## Tech Stack
+- Frontend: React + Microsoft Fluent UI
+- Web prototype: Blazor Server (`Flexispace.Web`)
+- Backend: .NET 8 Web API
+- Database: Microsoft SQL Server (Azure SQL) + EF Core
+- Mobile: .NET MAUI
+- Auth: Microsoft Entra ID
+
+## Web prototype (Blazor)
+Khumo-Thato Chabeli (ST10448834) — browser-based booking UI prototype using mock data.
+
+```powershell
+dotnet run --project Flexispace.Web/FlexiSpace.Web
+```
+
+See `Flexispace.Web/README.md` for demo accounts and routes. Open `Flexispace.Web/Flexispace.Web.sln` to work on the web app independently.
+
+## Mobile prototype (MAUI)
+Riba — Windows-first .NET MAUI booking app using mock services.
+
+```powershell
+dotnet build Flexispace.Mobile/Flexispace.Mobile/Flexispace.Mobile.csproj -f net10.0-windows10.0.19041.0
+dotnet run --project Flexispace.Mobile/Flexispace.Mobile/Flexispace.Mobile.csproj -f net10.0-windows10.0.19041.0
+```
+
+See `Flexispace.Mobile/README.md` for demo accounts and roles. Open `Flexispace.Mobile/Flexispace.Mobile.sln` to work on the mobile app independently.
+
+## Team
+| Member | Role |
+|---|---|
+| Khensani | DB schema, EF Core, Entra ID auth, Graph/Outlook sync |
+| Tino | Booking CRUD, conflict detection, search/filter |
+| Denzel | RBAC, admin/user mgmt, audit trail, reporting |
+| Khumo | Website UI (React + Fluent UI) |
+| Riba | Mobile UI (MAUI) |
+
+## Getting Started
+[instructions once the project is buildable]

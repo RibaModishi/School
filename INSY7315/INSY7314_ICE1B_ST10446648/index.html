@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSY7314 – ICE Task 1B | Emeris</title>
+  <link rel="icon" href="assets/emeris-logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+    <header class="brand-header">
+      <img src="assets/emeris-logo.png" alt="Emeris logo" class="logo">
+      <div class="brand-meta">
+        <p class="module">INSY7314 · ICE Task 1 · Activity B</p>
+        <p class="student">Student Number: ST10446648</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Mission Brief</h1>
+        <p class="hero-copy">Complete both interactive challenges below to finish Activity B. Each cleared mission unlocks progress toward your final mark.</p>
+
+        <div class="progress-panel" aria-live="polite">
+          <div class="progress-top">
+            <span class="progress-label">Mission Progress</span>
+            <span id="progressText" class="progress-score">0 / 2 cleared</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="2" aria-valuenow="0" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="xp-row">
+            <span class="xp-chip" id="xpChip">0 XP</span>
+            <span class="status-note" id="statusNote">Two missions remain.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activity 8: Button that pops up the student number -->
+      <section class="mission" id="mission8" data-mission="8">
+        <div class="mission-head">
+          <div>
+            <p class="mission-tag">Mission 01 </p>
+            <h2>Activity 8 — Identity Reveal</h2>
+          </div>
+          <span class="badge" id="badge8">Pending</span>
+        </div>
+        <p>Click the button to pop up your student number. This confirms your identity for the submission.</p>
+        <button type="button" id="studentBtn" class="btn primary">Reveal Student Number</button>
+      </section>
+
+      <!-- Activity 9: Field + button that displays the field's contents -->
+      <section class="mission" id="mission9" data-mission="9">
+        <div class="mission-head">
+          <div>
+            <p class="mission-tag">Mission 02 </p>
+            <h2>Activity 9 — Message Echo</h2>
+          </div>
+          <span class="badge" id="badge9">Pending</span>
+        </div>
+        <p>Type a message in the field, then click the button to display exactly what you entered.</p>
+        <div class="field-row">
+          <label class="sr-only" for="messageInput">Message</label>
+          <input type="text" id="messageInput" placeholder="Enter your message here..." maxlength="120" autocomplete="off">
+          <button type="button" id="messageBtn" class="btn primary">Echo Message</button>
+        </div>
+        <p id="messageOutput" class="output" aria-live="polite"></p>
+      </section>
+
+      <section class="complete-banner" id="completeBanner" hidden>
+        <h2>All missions cleared</h2>
+        <p>Activity B is complete. You are ready to zip and submit your web files.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built with HTML, CSS &amp; JavaScript · Reference: w3schools · Deadline: 20 July 2026, 23:59</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

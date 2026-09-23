@@ -1,0 +1,12 @@
+Student: ST10446648
+Project: ICE Task Activity 2 - Fragment A and Fragment B
+
+Open this project in Android Studio from:
+C:\Users\emeris\AndroidStudioProjects\ICETask2Fragments
+
+Screenshots needed for Arc:
+1) Fragment A
+2) Fragment B
+3) Both fragments together
+
+Due: 7 August 2026

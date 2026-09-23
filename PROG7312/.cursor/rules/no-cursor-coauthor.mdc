@@ -1,0 +1,14 @@
+---
+description: Never attribute commits or PRs to Cursor or cursoragent
+alwaysApply: true
+---
+
+# No Cursor commit attribution
+
+For the entire PROG7312 / Smart-X project:
+
+- Do not add `Co-authored-by: Cursor <cursoragent@cursor.com>` or any Cursor / cursoragent trailer to commits or PRs.
+- Do not pass `git commit --trailer` for Cursor attribution.
+- Do not add "Made with Cursor" footers to commit messages or pull requests.
+- Commit author must remain the student identity only (`RibaOrearabetse`).
+- If a commit message still contains a Cursor co-author line, remove it before finishing.
